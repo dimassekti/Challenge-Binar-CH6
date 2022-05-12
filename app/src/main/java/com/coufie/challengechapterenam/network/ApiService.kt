@@ -1,9 +1,6 @@
 package com.coufie.challengechapterenam.network
 
-import com.coufie.challengechapterenam.model.GetAllFilmItem
-import com.coufie.challengechapterenam.model.ResponseUserLogin
-import com.coufie.challengechapterenam.model.ResponseUserRegister
-import com.coufie.challengechapterenam.model.ResponseUserUpdate
+import com.coufie.challengechapterenam.model.*
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -14,6 +11,10 @@ interface ApiService {
 
     @GET("film")
     fun getAllFilmNew() : Call<List<GetAllFilmItem>>
+
+
+    @GET("apiuser.php")
+    fun getAllUser() : Call<List<GetAllUserItem>>
 
     @GET("apifilm.php")
     fun getAllFilm() : Call<List<GetAllFilmItem>>

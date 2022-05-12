@@ -23,32 +23,29 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        tv_login.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
-
-        userManager = UserManager(this)
-
-        btn_register.setOnClickListener {
-            val username = et_regusername.text.toString()
-            val password = et_regpassword.text.toString()
-
-            register()
-
-        }
+        register()
+        login()
 
     }
 
     fun register(){
 
-        if(et_regusername.text.isEmpty() || et_regpassword.text.isEmpty()){
-            Toast.makeText(this@RegisterActivity, "Data belum lengkap", Toast.LENGTH_SHORT).show()
-        }else{
-            val email = "default"
-            val password = et_regpassword.text.toString()
-            val username = et_regusername.text.toString()
+        btn_register.setOnClickListener {
 
-            postUserRegister(email, password, username)
+            if(et_register_email.text.isEmpty() || et_register_password.text.isEmpty() || et_register_username.text.isEmpty()){
+                Toast.makeText(this@RegisterActivity, "Data belum lengkap", Toast.LENGTH_SHORT).show()
+            }else{
+                if(et_register_password.text.toString() != et_confirm_password.text.toString()){
+                    Toast.makeText(this@RegisterActivity, "Password tidak samaa", Toast.LENGTH_SHORT).show()
+                }else{
+                    val email = et_register_email.text.toString()
+                    val password = et_register_password.text.toString()
+                    val username = et_register_username.text.toString()
+
+                    postUserRegister(email, password, username)
+                }
+            }
+
         }
     }
 
@@ -74,5 +71,11 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
             })
+    }
+
+    fun login(){
+        tv_goto_login.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
     }
 }
