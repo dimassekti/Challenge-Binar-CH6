@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.asLiveData
 import com.coufie.challengechapterenam.R
+import com.coufie.challengechapterenam.model.GetAllUserItem
 import com.coufie.challengechapterenam.model.ResponseUserLogin
 import com.coufie.challengechapterenam.model.UserManager
 import com.coufie.challengechapterenam.network.FilmApi
@@ -20,8 +21,9 @@ class LoginActivity : AppCompatActivity() {
     lateinit var userManager: UserManager
     var un = false
     var pw = false
-    var username = ""
+    var email = ""
     var password = ""
+    lateinit var dataUser : List<GetAllUserItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,43 +36,37 @@ class LoginActivity : AppCompatActivity() {
         userManager = UserManager(this)
 
         btn_login.setOnClickListener {
-            username = et_username.text.toString()
+            email = et_email.text.toString()
             password = et_password.text.toString()
 
-            userManager.userUsername.asLiveData().observe(this,{
-                if(username==it.toString()){
-                    un = true
-                }
-            })
-            userManager.userPassword.asLiveData().observe(this,{
-                if(password==it.toString()){
-                    pw = true
-                }
-            })
-
-//            if(un && pw){
-//                startActivity(Intent(this, HomeActivity::class.java))
-//            }else{
-//                tv_error.setText("Akun tidak ditemukan")
-////                  startActivity(Intent(this@LoginAct, HomeAct::class.java))
-//            }
-
             GlobalScope.launch {
-                userManager.saveData(username, password)
+                userManager.saveData(email, password)
             }
 
-            postUserLogin(username, password)
+            postUserLogin(email, password)
         }
     }
 
-    fun postUserLogin(username:String, password:String){
-        FilmApi.instance.loginUser(username, password)
+    fun postUserLogin(email:String, password:String){
+        FilmApi.instance.loginUser(email, password)
             .enqueue(object  : retrofit2.Callback<ResponseUserLogin>{
                 override fun onResponse(
                     call: Call<ResponseUserLogin>,
                     response: Response<ResponseUserLogin>
                 ) {
-                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                    if(response.isSuccessful){
+                        for(i in dataUser.indices){
+                            if(email == dataUser[i].email && password == dataUser[i].password){
+
+                                Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_LONG).show()
+                                startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+                            }
+                        }
+                    }else{
+                        Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_LONG).show()
+
+                    }
+
                 }
 
                 override fun onFailure(call: Call<ResponseUserLogin>, t: Throwable) {

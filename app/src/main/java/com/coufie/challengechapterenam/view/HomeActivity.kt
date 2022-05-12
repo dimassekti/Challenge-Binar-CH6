@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.coufie.challengechapterenam.R
 import com.coufie.challengechapterenam.model.UserManager
 import com.coufie.challengechapterenam.view.adapter.FilmAdapter
+import com.coufie.challengechapterenam.view.detail_page.DetailFilm
 import com.coufie.challengechapterenam.viewmodel.FilmViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.item_film.*
@@ -35,14 +36,15 @@ class HomeActivity : AppCompatActivity() {
         initFilmViewModel()
 
         filmCard?.setOnClickListener {
-            startActivity(Intent(this, DetailFilmActivity::class.java))
+            startActivity(Intent(this, DetailFilm::class.java))
         }
 
         btn_logout.setOnClickListener {
             GlobalScope.launch {
                 userManager.clearData()
-                startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
+
             }
+            startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
         }
 
     }

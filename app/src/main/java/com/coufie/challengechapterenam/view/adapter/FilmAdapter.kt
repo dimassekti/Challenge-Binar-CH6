@@ -30,7 +30,7 @@ class FilmAdapter(private var filmOnClick : (GetAllFilmItem)->Unit) : RecyclerVi
 
     override fun onBindViewHolder(holder: FilmAdapter.ViewHolder, position: Int) {
 
-        holder.itemView.tv_filmtitle.text = "title : ${filmData!![position].name.toString()}"
+        holder.itemView.tv_filmtitle.text = "title : ${filmData!![position].title.toString()}"
         holder.itemView.tv_filmdirector.text = "director : ${filmData!![position].director.toString()}"
 
         this.let {

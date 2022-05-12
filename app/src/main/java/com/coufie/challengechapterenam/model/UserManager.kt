@@ -24,11 +24,11 @@ class UserManager(context: Context) {
     }
 
     val userUsername : Flow<String> = dataStore.data.map{
-        it[USERNAME] ?: "null"
+        it[USERNAME] ?: ""
     }
 
     val userPassword : Flow<String> = dataStore.data.map {
-        it[PASSWORD] ?: "null"
+        it[PASSWORD] ?: ""
     }
 
     suspend fun clearData(){
