@@ -29,13 +29,19 @@ class HomeActivity : AppCompatActivity() {
 
         initRecycler()
         logout()
+        favourites()
+    }
 
+    fun favourites(){
+        iv_favourites.setOnClickListener {
+            startActivity(Intent(this, FavouriteActivity::class.java))
+        }
     }
 
     fun initRecycler(){
         filmAdapter = FilmAdapter(){
             val pindah = Intent(this, DetailFilm::class.java)
-            pindah.putExtra("DETAILFILM", it)
+            pindah.putExtra("DETAILFILMM", it)
             startActivity(pindah)
         }
         rv_film.layoutManager = LinearLayoutManager(this)

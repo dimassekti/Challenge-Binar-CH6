@@ -11,20 +11,21 @@ class UserManager(context: Context) {
     private val dataStore : DataStore<Preferences> = context.createDataStore(name = "user_prefs")
 
     companion object{
-        val USERNAME = preferencesKey<String>("USER_USERNAME")
+        val EMAILL = preferencesKey<String>("USER_EMAILL")
         val PASSWORD = preferencesKey<String>("USER_PASSWORD")
+
 
     }
 
-    suspend fun saveData(nama : String, password:String){
+    suspend fun saveData(email : String, password:String){
         dataStore.edit{
-            it[USERNAME] = nama
+            it[EMAILL] = email
             it[PASSWORD] = password
         }
     }
 
-    val userUsername : Flow<String> = dataStore.data.map{
-        it[USERNAME] ?: ""
+    val userEmail : Flow<String> = dataStore.data.map{
+        it[EMAILL] ?: ""
     }
 
     val userPassword : Flow<String> = dataStore.data.map {

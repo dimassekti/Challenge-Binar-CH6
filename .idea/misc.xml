@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_detail_film.xml" value="0.13703140830800406" />
+        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_detail_film.xml" value="0.16" />
         <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_detail_film2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_favourite.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_login.xml" value="0.28177083333333336" />
         <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_main.xml" value="0.1802536231884058" />
+        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_profile.xml" value="0.17889492753623187" />
         <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/activity_register.xml" value="0.35260416666666666" />
-        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/item_film.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/item_film.xml" value="0.18037135278514588" />
+        <entry key="..\:/Android Project/ChallengeChapterEnam/app/src/main/res/layout/item_film_fav.xml" value="0.1" />
       </map>
     </option>
   </component>

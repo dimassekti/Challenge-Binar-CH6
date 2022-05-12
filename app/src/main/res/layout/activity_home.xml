@@ -9,9 +9,25 @@
 
     <Button
         android:id="@+id/btn_logout"
+        android:layout_alignParentRight="true"
         android:text="logout"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv_favourites"
+        android:src="@drawable/ic_baseline_insert_emoticon_24"
+        android:layout_toLeftOf="@id/iv_profile"
+        android:layout_width="125px"
+        android:layout_height="125px"/>
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:src="@drawable/ic_baseline_person_24"
+        android:layout_toLeftOf="@id/btn_logout"
+        android:layout_width="125px"
+        android:layout_height="125px"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@id/btn_logout"

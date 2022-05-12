@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.asLiveData
 import com.coufie.challengechapterenam.R
 import com.coufie.challengechapterenam.model.UserManager
 
@@ -13,6 +16,7 @@ import com.coufie.challengechapterenam.model.UserManager
 class MainActivity : AppCompatActivity() {
 
     lateinit var userManager: UserManager
+    lateinit var email : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,13 +24,20 @@ class MainActivity : AppCompatActivity() {
 
         userManager = UserManager(this)
 
+        userManager.userEmail.asLiveData().observe(this, {
+            email = it.toString()
+        })
+
         Handler(Looper.getMainLooper()).postDelayed({
-//            if(userManager.userUsername != null){
-//                startActivity(Intent(this, HomeActivity::class.java))
-//            }else{
-//                startActivity(Intent(this, LoginActivity::class.java))
-//            }
-            startActivity(Intent(this, LoginActivity::class.java))
+
+            Log.d("tes", userManager.userEmail.toString())
+
+            if(email != ""){
+                startActivity(Intent(this, HomeActivity::class.java))
+            }else{
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+//            startActivity(Intent(this, LoginActivity::class.java))
 
 
         }, 3000)
