@@ -14,6 +14,9 @@
         android:theme="@style/Theme.ChallengeChapterEnam"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.detail_page.DetailFilm"
             android:exported="false" />
         <activity

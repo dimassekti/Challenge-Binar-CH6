@@ -54,11 +54,14 @@ class LoginActivity : AppCompatActivity() {
             email = et_email.text.toString()
             password = et_password.text.toString()
 
-            GlobalScope.launch {
-                userManager.saveData(email, password)
+            if (email != "" || password != "" ){
+                GlobalScope.launch {
+                    userManager.saveData(email, password)
+                }
+
+                postUserLogin(email, password)
             }
 
-            postUserLogin(email, password)
         }
     }
 
@@ -71,24 +74,21 @@ class LoginActivity : AppCompatActivity() {
                 ) {
                     if(response.isSuccessful){
                         for(i in dataUser.indices){
-                            if(email == dataUser[i].email && password == dataUser[i].password){
+                            if(email == dataUser[i].email && password == dataUser[i].password ){
 
-                                Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                            }else{
-                                Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_LONG).show()
-
                             }
                         }
                     }else{
-                        Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_SHORT).show()
 
                     }
 
                 }
 
                 override fun onFailure(call: Call<ResponseUserLogin>, t: Throwable) {
-                    Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_SHORT).show()
                 }
 
             })
@@ -102,5 +102,14 @@ class LoginActivity : AppCompatActivity() {
         viewModel.makeApiUser()
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        getUserData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
 }

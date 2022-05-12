@@ -25,20 +25,25 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        filmAdapter = FilmAdapter(){
-
-        }
-
         userManager = UserManager(this)
 
+        initRecycler()
+        logout()
+
+    }
+
+    fun initRecycler(){
+        filmAdapter = FilmAdapter(){
+            val pindah = Intent(this, DetailFilm::class.java)
+            pindah.putExtra("DETAILFILM", it)
+            startActivity(pindah)
+        }
         rv_film.layoutManager = LinearLayoutManager(this)
         rv_film.adapter = filmAdapter
         initFilmViewModel()
+    }
 
-        filmCard?.setOnClickListener {
-            startActivity(Intent(this, DetailFilm::class.java))
-        }
-
+    fun logout(){
         btn_logout.setOnClickListener {
             GlobalScope.launch {
                 userManager.clearData()
@@ -46,7 +51,6 @@ class HomeActivity : AppCompatActivity() {
             }
             startActivity(Intent(this@HomeActivity, LoginActivity::class.java))
         }
-
     }
 
     fun initFilmViewModel(){
