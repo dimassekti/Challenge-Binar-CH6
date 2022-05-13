@@ -12,7 +12,6 @@ interface ApiService {
     @GET("film")
     fun getAllFilmNew() : Call<List<GetAllFilmItem>>
 
-
     @GET("apiuser.php")
     fun getAllUser() : Call<List<GetAllUserItem>>
 

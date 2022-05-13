@@ -26,13 +26,17 @@
 
             <TextView
                 android:id="@+id/tv_filmtitle"
-                android:text="Country Name"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tv_filmdirector"
-                android:text="Country Capital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_filmreleasedate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

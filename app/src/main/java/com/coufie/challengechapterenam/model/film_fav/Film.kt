@@ -9,18 +9,18 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 @Parcelize
 data class Film(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     val id : Int?,
     @ColumnInfo(name = "director")
-    val director: String,
+    var director: String,
     @ColumnInfo(name = "image")
-    val image: String,
+    var image: String,
     @ColumnInfo(name = "release_date")
-    val releaseDate: String,
+    var releaseDate: String,
     @ColumnInfo(name = "synopsis")
-    val synopsis: String,
+    var synopsis: String,
     @ColumnInfo(name = "title")
-    val title: String
+    var title: String
 
 
 ) : Parcelable

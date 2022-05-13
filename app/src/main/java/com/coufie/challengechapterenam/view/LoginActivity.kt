@@ -3,6 +3,7 @@ package com.coufie.challengechapterenam.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,8 +25,16 @@ class LoginActivity : AppCompatActivity() {
     lateinit var userManager: UserManager
     var un = false
     var pw = false
+
+    var id = ""
     var email = ""
     var password = ""
+    var username = ""
+    var fullname = ""
+    var address = ""
+    var dob = ""
+
+
     lateinit var dataUser : List<GetAllUserItem>
     lateinit var viewModel : UserViewModel
 
@@ -43,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun register(){
-        tv_register.setOnClickListener {
+        tv_goto_register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
@@ -51,14 +60,10 @@ class LoginActivity : AppCompatActivity() {
     fun login(){
 
         btn_login.setOnClickListener {
-            email = et_email.text.toString()
-            password = et_password.text.toString()
+            email = et_input_email.text.toString()
+            password = et_input_password.text.toString()
 
             if (email != "" || password != "" ){
-                GlobalScope.launch {
-                    userManager.saveData(email, password)
-                }
-
                 postUserLogin(email, password)
             }
 
@@ -76,9 +81,37 @@ class LoginActivity : AppCompatActivity() {
                         for(i in dataUser.indices){
                             if(email == dataUser[i].email && password == dataUser[i].password ){
 
+                                id = dataUser[i].id
+
+                                if(dataUser[i].email != null){
+                                    this@LoginActivity.email = dataUser[i].email
+                                }
+                                if(dataUser[i].password != null){
+                                    this@LoginActivity.password = dataUser[i].password
+                                }
+                                if(dataUser[i].username != null){
+                                    this@LoginActivity.username = dataUser[i].username
+                                }
+                                if(dataUser[i].completeName != null){
+                                    this@LoginActivity.fullname = dataUser[i].completeName
+                                }
+                                if(dataUser[i].address != null){
+                                    this@LoginActivity.address = dataUser[i].address
+                                }
+                                if(dataUser[i].dateofbirth != null){
+                                    this@LoginActivity.dob = dataUser[i].dateofbirth
+                                }
+                                GlobalScope.launch {
+
+                                    userManager.saveData(id.toString(), email, password, username, fullname, address, dob)
+
+                                }
+//                                Toast.makeText(this@LoginActivity, "ini $id", Toast.LENGTH_SHORT).show()
                                 Toast.makeText(this@LoginActivity, "Login Berhasil", Toast.LENGTH_SHORT).show()
                                 startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                             }
+//                            Log.d("datauser", dataUser[i].email)
+
                         }
                     }else{
                         Toast.makeText(this@LoginActivity, "Data tidak ditemukan", Toast.LENGTH_SHORT).show()

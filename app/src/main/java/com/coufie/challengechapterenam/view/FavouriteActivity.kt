@@ -32,7 +32,7 @@ class FavouriteActivity : AppCompatActivity() {
             val listFavFilm = filmDb?.filmDao()?.getAllFilm()
             runOnUiThread{
                 if(listFavFilm?.size!! < 1){
-                    tv.setText("data kodsong")
+                    tv.setText("Favourite-ku Masing kosong")
                 }else{
                     listFavFilm.let {
                         rv_favfilm.adapter = AdapterFilmFavourite(it!!)
@@ -49,7 +49,7 @@ class FavouriteActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        getFilmFav()
     }
 
 }

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            Log.d("tes", userManager.userEmail.toString())
+//            Log.d("tes", userManager.userEmail.toString())
 
             if(email != ""){
                 startActivity(Intent(this, HomeActivity::class.java))

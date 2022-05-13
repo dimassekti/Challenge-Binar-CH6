@@ -19,11 +19,13 @@
         <LinearLayout
             android:layout_marginHorizontal="15dp"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_filmtitle"
+                android:textStyle="bold"
+                android:textSize="18sp"
                 android:text="Country Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -33,6 +35,23 @@
                 android:text="Country Capital"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_alignParentRight="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btn_favdelete"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:background="@android:color/transparent"
+                android:layout_margin="5dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"/>
 
         </LinearLayout>
 
