@@ -32,10 +32,10 @@
 
         <ImageView
             android:id="@+id/iv_favourites"
-            android:src="@drawable/ic_baseline_insert_emoticon_24"
-            android:layout_toLeftOf="@id/iv_profile"
             android:layout_width="125px"
-            android:layout_height="125px"/>
+            android:layout_height="125px"
+            android:layout_toLeftOf="@id/iv_profile"
+            android:src="@drawable/icons8_love_48" />
 
         <ImageView
             android:id="@+id/iv_profile"
@@ -45,10 +45,10 @@
             android:layout_height="125px"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_below="@id/btn_logout"
             android:id="@+id/rv_film"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_logout" />
     </RelativeLayout>
 
 
