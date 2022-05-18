@@ -3,20 +3,17 @@ package com.coufie.challengechapterenam.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coufie.challengechapterenam.R
-import com.coufie.challengechapterenam.model.UserManager
+import com.coufie.challengechapterenam.datastore.UserManager
 import com.coufie.challengechapterenam.view.adapter.FilmAdapter
 import com.coufie.challengechapterenam.view.detail_page.DetailFilm
 import com.coufie.challengechapterenam.viewmodel.FilmViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.btn_logout
-import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.item_film.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -41,7 +38,9 @@ class HomeActivity : AppCompatActivity() {
         initRecycler()
         logout()
         favourites()
-        runOnUiThread{}
+        runOnUiThread{
+
+        }
         profile()
 
     }

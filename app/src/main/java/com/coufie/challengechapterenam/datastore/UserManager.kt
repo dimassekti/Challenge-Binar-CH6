@@ -1,4 +1,4 @@
-package com.coufie.challengechapterenam.model
+package com.coufie.challengechapterenam.datastore
 
 import android.content.Context
 import androidx.datastore.DataStore
@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.map
 class UserManager(context: Context) {
 
     private val dataStore : DataStore<Preferences> = context.createDataStore(name = "user_prefs")
+    private val imageData: DataStore<Preferences> = context.createDataStore(name = "image_prefs")
 
     companion object{
         val ID = preferencesKey<String>("USER_ID")
@@ -18,6 +19,7 @@ class UserManager(context: Context) {
         val FULLNAME = preferencesKey<String>("USER_FULLNAME")
         val ADDRESS = preferencesKey<String>("USER_ADDRESS")
         val DOB = preferencesKey<String>("USER_DOB")
+        val IMAGE  = preferencesKey<String>("USER_IMAGE")
 
     }
 
@@ -30,6 +32,20 @@ class UserManager(context: Context) {
             it[FULLNAME] = fullname
             it[ADDRESS] = address
             it[DOB] = dob
+
+        }
+    }
+
+    suspend fun saveDataImage(image: String) {
+        imageData.edit {
+            it[IMAGE] = image
+
+        }
+    }
+
+    suspend fun deleteDataImage(){
+        imageData.edit{
+            it.clear()
 
         }
     }
@@ -62,6 +78,9 @@ class UserManager(context: Context) {
         it[DOB] ?: ""
     }
 
+    val userImage : kotlinx.coroutines.flow.Flow<String> = imageData.data.map {
+        it [IMAGE] ?: ""
+    }
 
     suspend fun clearData(){
         dataStore.edit {

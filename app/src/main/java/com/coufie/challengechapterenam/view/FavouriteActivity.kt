@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coufie.challengechapterenam.R
-import com.coufie.challengechapterenam.model.film_fav.AdapterFilmFavourite
-import com.coufie.challengechapterenam.model.film_fav.FilmDatabase
+import com.coufie.challengechapterenam.view.adapter.AdapterFilmFavourite
+import com.coufie.challengechapterenam.room.FilmDatabase
 import kotlinx.android.synthetic.main.activity_favourite.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

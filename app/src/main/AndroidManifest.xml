@@ -26,7 +26,7 @@
             android:name=".view.DetailFilmActivity"
             android:exported="false" />
         <activity
-            android:name=".model.UserManager"
+            android:name=".datastore.UserManager"
             android:exported="false"
             tools:ignore="Instantiatable" />
         <activity

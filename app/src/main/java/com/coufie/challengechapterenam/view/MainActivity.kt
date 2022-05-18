@@ -5,11 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.asLiveData
 import com.coufie.challengechapterenam.R
-import com.coufie.challengechapterenam.model.UserManager
+import com.coufie.challengechapterenam.datastore.UserManager
 
 
 //berisi splashscreen

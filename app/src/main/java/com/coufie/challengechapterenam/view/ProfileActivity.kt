@@ -1,14 +1,23 @@
 package com.coufie.challengechapterenam.view
 
+import android.Manifest
+import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.asLiveData
+import com.bumptech.glide.Glide
 import com.coufie.challengechapterenam.R
 import com.coufie.challengechapterenam.model.ResponseUserUpdate
-import com.coufie.challengechapterenam.model.UserManager
+import com.coufie.challengechapterenam.datastore.UserManager
 import com.coufie.challengechapterenam.network.FilmApi
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.GlobalScope
@@ -28,16 +37,26 @@ class ProfileActivity : AppCompatActivity() {
      var address = ""
      var dob = ""
 
+    //kurang image simpan ke datastore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
         userManager = UserManager(this)
+        userManager.userImage.asLiveData().observe(this){
+            if (it !==""){
+                Glide.with(this).load(it).into(iv_profile_image)
+            }
 
+        }
         initUM()
         logout()
         update()
 
+        iv_profile_image.setOnClickListener {
+            updateAvatar()
+        }
 
     }
 
@@ -156,6 +175,26 @@ class ProfileActivity : AppCompatActivity() {
         super.onDestroy()
         initUM()
 
+    }
+
+
+    private fun updateAvatar() {
+        val avatarIntent = Intent(Intent.ACTION_GET_CONTENT)
+        avatarIntent.type = "image/*"
+        if (avatarIntent.resolveActivity(this.packageManager) != null) {
+            startActivityForResult(avatarIntent, 2000)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == 2000 && data != null){
+            iv_profile_image.setImageURI(data?.data)
+            //save image string ke datastore
+            GlobalScope.launch {
+                userManager.saveDataImage(data?.data.toString())
+            }
+        }
     }
 
 }

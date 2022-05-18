@@ -1,6 +1,5 @@
 package com.coufie.challengechapterenam.view.detail_page
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +7,8 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.coufie.challengechapterenam.R
 import com.coufie.challengechapterenam.model.GetAllFilmItem
-import com.coufie.challengechapterenam.model.film_fav.Film
-import com.coufie.challengechapterenam.model.film_fav.FilmDatabase
-import com.coufie.challengechapterenam.view.FavouriteActivity
+import com.coufie.challengechapterenam.room.Film
+import com.coufie.challengechapterenam.room.FilmDatabase
 import kotlinx.android.synthetic.main.activity_detail_film.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async

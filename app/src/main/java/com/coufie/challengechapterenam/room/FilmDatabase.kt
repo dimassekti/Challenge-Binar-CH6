@@ -1,4 +1,4 @@
-package com.coufie.challengechapterenam.model.film_fav
+package com.coufie.challengechapterenam.room
 
 import android.content.Context
 import androidx.room.Database

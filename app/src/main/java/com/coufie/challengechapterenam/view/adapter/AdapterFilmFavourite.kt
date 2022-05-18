@@ -1,6 +1,5 @@
-package com.coufie.challengechapterenam.model.film_fav
+package com.coufie.challengechapterenam.view.adapter
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.view.LayoutInflater
@@ -10,8 +9,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.coufie.challengechapterenam.R
+import com.coufie.challengechapterenam.room.Film
+import com.coufie.challengechapterenam.room.FilmDatabase
 import com.coufie.challengechapterenam.view.FavouriteActivity
-import com.coufie.challengechapterenam.view.MainActivity
 import kotlinx.android.synthetic.main.item_film_fav.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -27,14 +27,14 @@ class AdapterFilmFavourite(val listFilmFavourite: List<Film>) : RecyclerView.Ada
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AdapterFilmFavourite.ViewHolder {
+    ): ViewHolder {
 
         val viewItem = LayoutInflater.from(parent.context).inflate(R.layout.item_film_fav, parent, false)
 
         return ViewHolder(viewItem)
     }
 
-    override fun onBindViewHolder(holder: AdapterFilmFavourite.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         this.let {
             Glide.with(holder.itemView.context).load(listFilmFavourite!![position].image).into(holder.itemView.iv_filmimage)
         }

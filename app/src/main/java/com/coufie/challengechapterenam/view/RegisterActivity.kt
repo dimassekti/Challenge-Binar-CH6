@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.widget.Toast
 import com.coufie.challengechapterenam.R
 import com.coufie.challengechapterenam.model.ResponseUserRegister
-import com.coufie.challengechapterenam.model.UserManager
-import com.coufie.challengechapterenam.network.ApiService
+import com.coufie.challengechapterenam.datastore.UserManager
 import com.coufie.challengechapterenam.network.FilmApi
 import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
@@ -50,6 +47,13 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
+    fun login(){
+        tv_goto_login.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+    }
+
+
     fun postUserRegister(email : String, password : String, username : String){
         FilmApi.instance.registerUser(email, password, username)
             .enqueue(object : retrofit2.Callback<ResponseUserRegister>{
@@ -73,9 +77,5 @@ class RegisterActivity : AppCompatActivity() {
             })
     }
 
-    fun login(){
-        tv_goto_login.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
-    }
+
 }

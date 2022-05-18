@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"/>
 
                 <ImageView
+                    android:id="@+id/iv_profile_image"
                     android:layout_margin="20dp"
                     android:src="@drawable/jett"
                     android:layout_gravity="center"
